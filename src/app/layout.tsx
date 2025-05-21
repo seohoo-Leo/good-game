@@ -1,9 +1,13 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import TopNavbar from "@/pages/common/component/TopNavbar";
-import LeftNavbar from "@/pages/common/component/LeftNavbar";
+import TopNavbar from "@/app/component/TopNavbar";
+import LeftNavbar from "@/app/component/LeftNavbar";
 import QueryProvider from "./component/query-provider";
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/thumbs';
+import 'swiper/css/free-mode';
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -29,14 +33,14 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased flex flex-col`}
       >
         <QueryProvider>
         <TopNavbar/>
-        <main className="flex flex-row h-screen">
+        <div className="flex flex-row">
         <LeftNavbar/>
         {children}
-        </main>
+        </div>
         </QueryProvider>
       </body>
     </html>

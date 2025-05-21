@@ -1,9 +1,9 @@
-import HomePage from "@/pages/homePage/HomePage";
+import HomePage from "@/app/component/HomePage"
 
 
 export default function Home () {
   return (
-     <div className="w-full">
+     <div>
       <HomePage/>
      </div>
 
