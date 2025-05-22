@@ -8,7 +8,7 @@ const page = ({params}) => {
 
 
   return (
-    <div >
+    <div className=" w-screen">
       <GameDetail gameId={params?.id}/>
     </div>
   )

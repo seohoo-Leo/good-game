@@ -18,7 +18,7 @@ export default function ScreenshotSlider({ images }: Props) {
   const [thumbsSwiper, setThumbsSwiper] = useState<any>(null);
 
   return (
-    <div className="w-full max-w-lg sm:max-w-2xl mx-auto">
+    <div className="w-full max-w-lg sm:max-w-2xl lg:max-w-3xl xl:max-w-4xl mx-auto">
       {/* 메인 슬라이더 */}
       <div className="relative">
         <Swiper
@@ -60,7 +60,7 @@ export default function ScreenshotSlider({ images }: Props) {
         freeMode={true}
         watchSlidesProgress={true}
         spaceBetween={10}
-        className="mt-4 px-2"
+        className="mt-4 px-2 h-20"
       >
         {images?.map((src, i) => (
           <SwiperSlide key={i} className=" relative aspect-video cursor-pointer rounded overflow-hidden border-4 transition-all duration-200

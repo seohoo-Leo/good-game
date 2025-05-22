@@ -8,7 +8,7 @@ const LeftNavbar = () => {
 
   return (
       /* Sidebar */
-      <aside className="hidden md:flex w-auto text-black ">
+      <aside className="hidden md:flex w-auto pl-5 text-black ">
         <nav className="flex flex-col gap-4 pt-3 w-60">
           <Link href="/homepage" className="hover:text-yellow-500 font-bold text-4xl">Home</Link>
 

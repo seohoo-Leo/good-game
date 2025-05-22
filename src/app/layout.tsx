@@ -8,6 +8,7 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/thumbs';
 import 'swiper/css/free-mode';
+import Providers from "./providers";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -35,13 +36,15 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased flex flex-col`}
       >
-        <QueryProvider>
-        <TopNavbar/>
-        <div className="flex flex-row">
-        <LeftNavbar/>
-        {children}
-        </div>
-        </QueryProvider>
+        <Providers>
+          <QueryProvider>
+            <TopNavbar/>
+            <div className="flex flex-row">
+              <LeftNavbar/>
+              {children}
+            </div>
+          </QueryProvider>
+        </Providers>
       </body>
     </html>
   );
