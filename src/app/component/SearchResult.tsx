@@ -26,21 +26,20 @@ const SearchResult = ({search}) => {
       if(isError){
         <div>error : 에러입니다.</div>
       }
-        console.log(search)
 
 
 
   return (
     <main className='w-full'>
-      <div className='text-7xl font-bold pt-5 pl-5 pb-7'>
-        New and trending
+      <div className='text-5xl font-bold pt-5 pl-5 pb-7'>
+        {search} 검색결과입니다
       </div>
         <Masonry
       breakpointCols={breakpointColumnsObj}
       className="flex gap-4 mt-3"
       columnClassName="masonry-column"
     >
-        {data?.results?.map((game,index) => {
+        {data!= undefined&&data?.results?.map((game,index) => {
           return(
             <div key={index} className="mb-4">
                 <GameCard game={game} />  

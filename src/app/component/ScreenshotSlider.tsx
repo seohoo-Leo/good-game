@@ -17,6 +17,7 @@ type Props = {
 export default function ScreenshotSlider({ images }: Props) {
   const [thumbsSwiper, setThumbsSwiper] = useState<any>(null);
 
+    
   return (
     <div className="w-full max-w-lg sm:max-w-2xl lg:max-w-3xl xl:max-w-4xl mx-auto">
       {/* 메인 슬라이더 */}
@@ -33,12 +34,13 @@ export default function ScreenshotSlider({ images }: Props) {
         >
           {images?.map((src, i) => (
             <SwiperSlide key={i}>
-              <Image
+              {src?  <Image
                 src={src}
                 alt={`screenshot-${i}`}
                 fill
                 className="w-full h-[720px] object-cover"
-              />
+              /> : null}
+             
             </SwiperSlide>
           ))}
         </Swiper>
@@ -62,16 +64,16 @@ export default function ScreenshotSlider({ images }: Props) {
         spaceBetween={10}
         className="mt-4 px-2 h-20"
       >
-        {images?.map((src, i) => (
+        { images?.map((src, i) => (
           <SwiperSlide key={i} className=" relative aspect-video cursor-pointer rounded overflow-hidden border-4 transition-all duration-200
                  border-transparent opacity-70 hover:opacity-100
                  [&.swiper-slide-thumb-active]:border-blue-500 [&.swiper-slide-thumb-active]:opacity-100 [&.swiper-slide-thumb-active]:ring-2 [&.swiper-slide-thumb-active]:ring-blue-300">
-            <Image
+            {src ? <Image
               src={src}
               alt={`thumb-${i}`}
               fill
               className="object-cover w-full h-20"
-            />
+            />: null }
           </SwiperSlide>
         ))}
       </Swiper>

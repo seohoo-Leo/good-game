@@ -1,17 +1,18 @@
 'use client'
 
 import GameDetail from "@/app/component/GameDetail"
+import { use } from 'react';
 
 
-const page = ({params}) => {
-  
+const Page = ({ params }: { params: Promise<{ id: string }> }) => {
+    const { id } = use(params);
 
 
   return (
     <div className=" w-screen">
-      <GameDetail gameId={params?.id}/>
+      <GameDetail gameId={id}/>
     </div>
   )
 }
 
-export default page
+export default Page

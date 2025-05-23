@@ -1,6 +1,6 @@
 'use client'
 import { signIn } from 'next-auth/react'
-import { useSession, signOut } from 'next-auth/react'
+import {  signOut } from 'next-auth/react'
 
 
 
@@ -8,11 +8,6 @@ export default function LoginPage() {
 
 
 
-   const { data: session } = useSession()
-
-//   if (!session) return <p>로그인이 필요합니다</p>
-  
-  console.log(session);
   
 
   return (

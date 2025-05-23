@@ -9,6 +9,7 @@ import 'swiper/css/navigation';
 import 'swiper/css/thumbs';
 import 'swiper/css/free-mode';
 import Providers from "./providers";
+import Footer from "./component/Footer";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -39,10 +40,11 @@ export default function RootLayout({
         <Providers>
           <QueryProvider>
             <TopNavbar/>
-            <div className="flex flex-row">
+            <div className="flex flex-col md:flex-row">
               <LeftNavbar/>
               {children}
             </div>
+            <Footer/>
           </QueryProvider>
         </Providers>
       </body>

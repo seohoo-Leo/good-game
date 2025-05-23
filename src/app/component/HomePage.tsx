@@ -4,6 +4,7 @@
 import { useGameInfo } from '@/hooks/useGameInfo';
 import Masonry from 'react-masonry-css';
 import GameCard from './GameCard';
+import Spinner from './Spinner';
 
 const HomePage = () => {
 
@@ -14,8 +15,6 @@ const HomePage = () => {
      // 지난 달 1일
         const lastMonthFirst = new Date(today.getFullYear(), today.getMonth() - 1, 1);
 
-    // 이번년도 1일
-       const firstDayOfYear =new Date( new Date().getFullYear(), 0 ,1 )
 
     // YYYY-MM-DD 형식으로 변환
         const formatDate = (date: Date) => date.toISOString().split('T')[0];
@@ -37,12 +36,11 @@ const HomePage = () => {
               };
 
       if(isLoading){
-        <p>로딩중</p>
+        <Spinner/>
       }
       if(isError){
         <div>error : 에러입니다.</div>
       }
-        console.log(data)
 
 
 
@@ -56,7 +54,7 @@ const HomePage = () => {
       className="flex gap-4 mt-3"
       columnClassName="masonry-column"
     >
-        {data?.results?.map((game,index) => {
+        {data!= undefined && data?.results?.map((game,index) => {
           return(
             <div key={index} className="mb-4">
                 <GameCard game={game} />  

@@ -1,7 +1,7 @@
 
 'use client'
 
-import { useState } from 'react'
+import { useEffect, useState, useRef } from 'react'
 import Link from 'next/link';
 import { Search } from 'lucide-react';
 import {
@@ -11,9 +11,9 @@ import {
 import { useRouter } from 'next/navigation';
 import LoginModal from './LoginModal';
 import { useSession } from 'next-auth/react';
-
-
-
+import useUserInfo from '../../../store/useUserInfo';
+import Image from 'next/image';
+import { signOut } from 'next-auth/react';
 
 
 const TopNavbar = () => {
@@ -21,16 +21,34 @@ const TopNavbar = () => {
   const router = useRouter();
   const [query, setQuery] = useState('')
   const [mobileMenuOpen, setMobileMenuOpen] =useState(false) 
-   const [isLoginOpen, setLoginOpen] = useState(false)
+  const [isLoginOpen, setLoginOpen] = useState(false)
+  const {login,setLogin} =useUserInfo()
+  const [isOpen,setIsOpen] =useState(false);
+  const dropdownRef = useRef<HTMLDivElement>(null);
 
-    const handleInputChange = (e) => {
+  // 바깥 클릭 시 드롭다운 닫기
+  useEffect(() => {
+    const handleClickOutside = (e: MouseEvent) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(e.target as Node)) {
+        setIsOpen(false);
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
+
+
+  const handleInputChange = (e) => {
     setQuery(e.target.value)
     console.log(query);
     }
 
+    // 로그인 상태 확인
      const { data: session } = useSession()
-
-     console.log(session);
+      useEffect(()=>{
+        if(session?.user){setLogin(true)}
+        else(setLogin(false))
+      },[session?.user, setLogin])
      
 
     // Enter 키로 검색 시 실행되는 함수
@@ -47,13 +65,13 @@ const TopNavbar = () => {
   return (
      <header className="bg-white">
       <nav aria-label="Global" className=" flex max-w-8xl items-center justify-between p-6 lg:px-8">
-        <div className="flex lg:flex-1">
+        <div className="flex mr-5 ">
           <Link href="/homepage" className="-m-1.5 p-1.5 font-bold bg-amber-300 border-4">
             <span>Good </span> <br/>
             <span>Game</span>
           </Link>
         </div>
-      <div className=" flex items-center   bg-gray-100 rounded-lg shadow px-4 py-2 w-7/10 ">
+      <div className=" flex items-center justify-center min-w-50 bg-gray-100 rounded-lg shadow px-4 py-2 w-6/10 ">
         <Search className="text-gray-500 w-5 h-5 mr-2" />
         <input
           type="text"
@@ -64,12 +82,43 @@ const TopNavbar = () => {
           onChange={handleInputChange}
           />
     </div>
-        <div className="lg:flex lg:flex-3 lg:justify-end">
+        {!login? <div>
         <button onClick={() => setLoginOpen(true)} className= "hover: cursor-pointer font-bold px-3 py-1 rounded">
             Log in <span aria-hidden="true">&rarr;</span>
           </button>
            <LoginModal isOpen={isLoginOpen} onClose={() => setLoginOpen(false)} />
-        </div>
+          </div> : 
+            <div className='relative inline-block text-left min-w-15 ml-5'
+                  ref={dropdownRef}>
+               <button onClick={()=>setIsOpen(!isOpen)}  className="flex hover: cursor-pointer items-center space-x-2 focus:outline-none">     
+              {session?.user?.image && (
+                <Image src={session?.user?.image} 
+                        alt="프로필사진"
+                        width={40}
+                        height={40}
+                        className='rounded-full w-12 h-12'/>
+              )}
+              <div className='hidden md:flex m-3 text-2xl font-medium'>{session?.user?.name}</div>
+              </button> 
+               {/* 드롭다운 메뉴 */}
+                  {isOpen && (
+                    <div className="absolute right-0 mt-2 w-48 bg-white border rounded-lg shadow-lg z-50">
+                      <a
+                        href="/profile"
+                        className="block px-4 py-2 text-sm text-gray-700 hover:bg-amber-300"
+                      >
+                        프로필 설정
+                      </a>
+                      <button
+                        onClick={() => signOut()}
+                        className="w-full text-left px-4 py-2 text-sm text-gray-700 hover: cursor-pointer hover:bg-amber-300"
+                      >
+                        로그아웃
+                      </button>
+                    </div>
+                  )}
+            </div> }
+       
       </nav>
       <Dialog open={mobileMenuOpen} onClose={setMobileMenuOpen} className="lg:hidden">
         <div className="fixed inset-0 z-10" />

@@ -17,7 +17,7 @@ const GameDetail = ({gameId}) => {
 
     const gamePlatformId =data?.platforms.map( item => item.platform.id)
 
-        console.log(data?.background_image)
+
 
   return (
     <div className="flex flex-col m-3">

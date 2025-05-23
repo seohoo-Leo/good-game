@@ -48,7 +48,7 @@ const TopLastYear = () => {
          className="flex gap-4 mt-3"
          columnClassName="masonry-column"
        >
-           {data?.results?.map((game,index) => {
+           {data!= undefined&&data?.results?.map((game,index) => {
              return(
                <div key={index} className="mb-4">
                    <GameCard game={game} />  

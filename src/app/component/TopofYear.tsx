@@ -37,7 +37,7 @@ const TopofYear = () => {
         if(isError){
           <div>error : 에러입니다.</div>
         }
-          console.log(data)
+          
 
     return (
       <main className='w-full'>
@@ -49,7 +49,7 @@ const TopofYear = () => {
         className="flex gap-4 mt-3"
         columnClassName="masonry-column"
       >
-          {data?.results?.map((game,index) => {
+          {data!= undefined&&data?.results?.map((game,index) => {
             return(
               <div key={index} className="mb-4">
                   <GameCard game={game} />  

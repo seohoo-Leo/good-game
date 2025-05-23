@@ -38,8 +38,7 @@ const AllGame = () => {
         if(isError){
           <div>error : 에러입니다.</div>
         }
-  
-        console.log(endDate)
+
   
   
     return (
