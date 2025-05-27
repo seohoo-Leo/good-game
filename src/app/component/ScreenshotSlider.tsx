@@ -15,7 +15,7 @@ type Props = {
 };
 
 export default function ScreenshotSlider({ images }: Props) {
-  const [thumbsSwiper, setThumbsSwiper] = useState<any>(null);
+  const [thumbsSwiper, setThumbsSwiper] = useState(null);
 
     
   return (

@@ -3,7 +3,6 @@ import { FaPlusSquare } from "react-icons/fa";
 import { motion } from 'framer-motion';
 import { useState } from 'react';
 import PlatformIcon from "./PlatformIcon";
-import Link from "next/link";
 import { useRouter } from "next/navigation"; 
 
 
@@ -32,7 +31,7 @@ const GameCard = ({game}) => {
        : null}
          </div>  
       <div className="p-5">
-        <div className="flex"> {gamePlatformId?.map(num => <PlatformIcon id={num} />)}</div>
+        <div className="flex"> {gamePlatformId?.map((num,index) => <PlatformIcon key={index} id={num} />)}</div>
         <div className="font-bold text-2xl">{game?.name}</div>
         <div className="flex font-medium items-center"><FaPlusSquare />{game?.added}</div>
          <motion.div
@@ -41,7 +40,7 @@ const GameCard = ({game}) => {
         transition={{ duration: 0.3 }}
         className="overflow-hidden"
       >
-        <div calssName="flex flex-col ">
+        <div className="flex flex-col ">
           <div className="mt-2 flex font-medium text-gray-700  flex-row border-t-1 ">
             <div className="basis-1/3" >장르</div> 
             <div className="basis-2/3 text-end" >

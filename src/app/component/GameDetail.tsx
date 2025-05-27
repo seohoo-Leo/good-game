@@ -2,7 +2,6 @@ import { useGameDetail } from "@/hooks/useGameDetail";
 import { useGameDetailImg } from "@/hooks/useGameDetailImg";
 import ScreenshotSlider from "./ScreenshotSlider";
 import PlatformIcon from "./PlatformIcon";
-import Link from "next/link";
 
 
 const GameDetail = ({gameId}) => {
@@ -28,7 +27,7 @@ const GameDetail = ({gameId}) => {
         <ScreenshotSlider images={images}/>
         <div className=" flex flex-col  shadow-lg border-2 border-amber-400  mt-7 w-9/10 p-5 xl:ml-5">
             <div className="text-3xl font-bold"> {data?.name}  </div>
-            <div className="flex justify-end">{gamePlatformId?.map(num => <PlatformIcon id={num} />)}</div>
+            <div className="flex justify-end">{gamePlatformId?.map((num,index) => <PlatformIcon key={index} id={num} />)}</div>
             <div className="text-end text-xl font-medium text-amber-700"> 
                 { data?.genres.slice(0,3).map(a => a.name).join(", ")}</div>
             <div className="text-gray-700"> {data?.description_raw}</div>

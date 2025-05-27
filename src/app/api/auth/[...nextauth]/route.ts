@@ -22,7 +22,7 @@ const handler = NextAuth({
     },
     async session({ session, token }) {
       session.accessToken = token.accessToken
-      session.user.id = token.id
+      session.user.id = token.id as string
       return session
     },
   },
