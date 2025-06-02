@@ -9,13 +9,15 @@ import 'swiper/css/navigation';
 import 'swiper/css/thumbs';
 import 'swiper/css/free-mode';
 import Image from 'next/image';
+import { Swiper as SwiperType } from 'swiper';
+
 
 type Props = {
   images: string[];
 };
 
 export default function ScreenshotSlider({ images }: Props) {
-  const [thumbsSwiper, setThumbsSwiper] = useState(null);
+  const [thumbsSwiper, setThumbsSwiper] = useState<SwiperType | null>(null);
 
     
   return (

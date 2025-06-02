@@ -4,9 +4,13 @@ import { motion } from 'framer-motion';
 import { useState } from 'react';
 import PlatformIcon from "./PlatformIcon";
 import { useRouter } from "next/navigation"; 
+import { Game } from "@/types/types";
 
+interface Props{
+  game:Game
+}
 
-const GameCard = ({game}) => {
+const GameCard = ({game}:Props) => {
     const [isHover, setIsHover] = useState(false);
     const router =useRouter();
 
@@ -16,7 +20,9 @@ const GameCard = ({game}) => {
 
     const gamePlatformId =game?.platforms?.map( item => item?.platform?.id)
       
-  
+    console.log(game.id);
+    
+       
     return (
     <div onClick={handleClick} className=" hover: cursor-pointer">
     <div className="bg-amber-400 border-3 rounded-lg"
@@ -44,7 +50,7 @@ const GameCard = ({game}) => {
           <div className="mt-2 flex font-medium text-gray-700  flex-row border-t-1 ">
             <div className="basis-1/3" >장르</div> 
             <div className="basis-2/3 text-end" >
-            { game?.genres.slice(0,2).map(a => a.name).join(", ")}
+            { game?.genres?.slice(0,2).map(a => a.name).join(", ")}
         
              </div>   
             </div>

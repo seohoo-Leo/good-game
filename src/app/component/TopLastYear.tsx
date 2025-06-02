@@ -3,6 +3,7 @@
 import { useGameInfo } from '@/hooks/useGameInfo';
 import Masonry from 'react-masonry-css';
 import GameCard from './GameCard';
+import { Game } from '@/types/types';
 
 const TopLastYear = () => {
   const mode = "-rating"
@@ -48,7 +49,7 @@ const TopLastYear = () => {
          className="flex gap-4 mt-3"
          columnClassName="masonry-column"
        >
-           {data!= undefined&&data?.results?.map((game,index) => {
+           {data!= undefined&&data?.results?.map((game:Game,index:number) => {
              return(
                <div key={index} className="mb-4">
                    <GameCard game={game} />  

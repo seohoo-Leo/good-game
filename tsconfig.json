@@ -37,7 +37,8 @@
     "**/*.ts",
     "**/*.tsx",
     "next-env.d.ts",
-    "src/types/**/*.d.ts",
+    "src/app/types/**/*.d.ts",
+    "types/**/*.d.ts",
     ".next/types/**/*.ts"
   ],
   "exclude": [

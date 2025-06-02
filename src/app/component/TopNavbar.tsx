@@ -38,9 +38,8 @@ const TopNavbar = () => {
   }, []);
 
 
-  const handleInputChange = (e) => {
+  const handleInputChange = (e:React.ChangeEvent<HTMLInputElement>) => {
     setQuery(e.target.value)
-    console.log(query);
     }
 
     // 로그인 상태 확인
@@ -52,7 +51,7 @@ const TopNavbar = () => {
      
 
     // Enter 키로 검색 시 실행되는 함수
-  const searchEnter = (event) => {
+  const searchEnter = (event:React.KeyboardEvent<HTMLInputElement>) => {
     if (event.key === "Enter") {  // Enter 키가 눌리면
       event.preventDefault();  // 기본 동작 방지 (폼 제출 등)
        if (!query.trim()) return

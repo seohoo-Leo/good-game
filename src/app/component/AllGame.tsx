@@ -3,6 +3,7 @@
 import { useGameInfo } from '@/hooks/useGameInfo';
 import Masonry from 'react-masonry-css';
 import GameCard from './GameCard';
+import { Game } from '@/types/types';
 
 const AllGame = () => {
     // 하루전 날짜
@@ -38,8 +39,7 @@ const AllGame = () => {
         if(isError){
           <div>error : 에러입니다.</div>
         }
-
-  
+        
   
     return (
       <main className='w-full'>
@@ -51,7 +51,7 @@ const AllGame = () => {
         className="flex gap-4 mt-3"
         columnClassName="masonry-column"
       >
-          {data?.results?.map((game,index) => {
+          {data?.results?.map((game:Game,index:number) => {
             return(
               <div key={index} className="mb-4">
                   <GameCard game={game} />  

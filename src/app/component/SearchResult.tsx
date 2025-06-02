@@ -4,12 +4,16 @@
 import Masonry from 'react-masonry-css';
 import GameCard from './GameCard';
 import { useGameSearch } from '@/hooks/useGameSearch';
+import { Game } from '@/types/types';
+import { useSearchParams } from "next/navigation"
 
 
 
-const SearchResult = ({search}) => {
+const SearchResult = () => {
 
-   
+    const searchParams= useSearchParams();
+    const search = searchParams.get('query')
+
 
      const {data , isLoading, isError } = useGameSearch(search)
 
@@ -39,7 +43,7 @@ const SearchResult = ({search}) => {
       className="flex gap-4 mt-3"
       columnClassName="masonry-column"
     >
-        {data!= undefined&&data?.results?.map((game,index) => {
+        {data!= undefined&&data?.results?.map((game:Game,index:number) => {
           return(
             <div key={index} className="mb-4">
                 <GameCard game={game} />  

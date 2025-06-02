@@ -1,17 +1,17 @@
 'use client'
 
-
+import { Suspense } from 'react';
 import SearchResult from "../component/SearchResult"
-import { useSearchParams } from "next/navigation"
+
 
 const Page = () => {
 
-   const searchParams= useSearchParams();
-    const search = searchParams.get('query')
 
   return (
     <div className=" w-screen">
-      <SearchResult search={search}/>
+      <Suspense fallback={<div>로딩 중...</div>}>
+        <SearchResult/>
+      </Suspense>
     </div>
   )
 }
