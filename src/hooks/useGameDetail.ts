@@ -12,7 +12,7 @@ export const useGameDetail=(id:string)=>{
     return useQuery({
         queryKey:['gamedetail', id],
         queryFn : ()=>fetchGameDetail(id),
-        select : (results) => results.data
+        select : (results) => results.data,
     })
 
 }

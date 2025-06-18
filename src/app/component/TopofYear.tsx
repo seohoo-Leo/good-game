@@ -5,6 +5,7 @@ import { useGameInfo } from '@/hooks/useGameInfo';
 import Masonry from 'react-masonry-css';
 import GameCard from './GameCard';
 import { Game } from '@/types/types';
+import Spinner from './Spinner';
 
 const TopofYear = () => {
 
@@ -41,15 +42,18 @@ const TopofYear = () => {
           
 
     return (
-      <main className='w-full'>
+      <main className='w-full pr-5 pl-5'>
         <div className='text-7xl font-bold pt-5 pl-5 pb-7'>
           올해의 베스트
         </div>
+
+        {data == undefined && <Spinner/>}  
           <Masonry
         breakpointCols={breakpointColumnsObj}
         className="flex gap-4 mt-3"
         columnClassName="masonry-column"
       >
+         
           {data!= undefined&&data?.results?.map((game:Game,index:number) => {
             return(
               <div key={index} className="mb-4">

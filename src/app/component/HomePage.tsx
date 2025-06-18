@@ -29,6 +29,8 @@ const HomePage = () => {
 
         const {data , isLoading, isError } = useGameInfo({startDate,endDate,mode})
 
+
+        
         const breakpointColumnsObj = {
                 default: 4,
                 1280: 3,
@@ -46,15 +48,17 @@ const HomePage = () => {
 
 
   return (
-    <main className='w-full'>
+    <main className='w-full pr-5 pl-5'>
       <div className='text-7xl font-bold pt-5 pl-5 pb-7'>
         New and trending
       </div>
+
+         {data == undefined && <Spinner/>}  
+
         <Masonry
       breakpointCols={breakpointColumnsObj}
       className="flex gap-4 mt-3"
-      columnClassName="masonry-column"
-    >
+      columnClassName="masonry-column">
         {data!= undefined && data?.results?.map((game:Game,index:number) => {
           return(
             <div key={index} className="mb-4">

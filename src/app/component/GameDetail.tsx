@@ -3,6 +3,7 @@ import { useGameDetailImg } from "@/hooks/useGameDetailImg";
 import ScreenshotSlider from "./ScreenshotSlider";
 import PlatformIcon from "./PlatformIcon";
 import {Img, PlatformWrapper, Genre} from"../../types/types"
+import Spinner from "./Spinner";
 
 interface Props {
   gameId : string
@@ -21,16 +22,18 @@ const GameDetail = ({gameId}:Props) => {
 
     const gamePlatformId =data?.platforms.map( (item:PlatformWrapper) => item.platform.id)
 
-  console.log(data?.genres);
+
   
 
   return (
     <div className="flex flex-col m-3">
+      {data == undefined && 
+        <Spinner/>}
       <div className="flex text-6xl font-bold pb-8" >
         {data?.name} 
       </div>
       <div className="flex items-center flex-col ">
-        <ScreenshotSlider images={images}/>
+        <ScreenshotSlider images={images}/> 
         <div className=" flex flex-col  shadow-lg border-2 border-amber-400  mt-7 w-9/10 p-5 xl:ml-5">
             <div className="text-3xl font-bold"> {data?.name}  </div>
             <div className="flex justify-end">{gamePlatformId?.map((num:number,index:number) => <PlatformIcon key={index} id={num} />)}</div>

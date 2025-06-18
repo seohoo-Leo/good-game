@@ -10,6 +10,7 @@ import 'swiper/css/thumbs';
 import 'swiper/css/free-mode';
 import Image from 'next/image';
 import { Swiper as SwiperType } from 'swiper';
+import Spinner from './Spinner';
 
 
 type Props = {
@@ -19,7 +20,9 @@ type Props = {
 export default function ScreenshotSlider({ images }: Props) {
   const [thumbsSwiper, setThumbsSwiper] = useState<SwiperType | null>(null);
 
-    
+    console.log(images);
+      
+
   return (
     <div className="w-full max-w-lg sm:max-w-2xl lg:max-w-3xl xl:max-w-4xl mx-auto">
       {/* 메인 슬라이더 */}
@@ -36,13 +39,12 @@ export default function ScreenshotSlider({ images }: Props) {
         >
           {images?.map((src, i) => (
             <SwiperSlide key={i}>
-              {src?  <Image
+               <Image
                 src={src}
                 alt={`screenshot-${i}`}
                 fill
                 className="w-full h-[720px] object-cover"
-              /> : null}
-             
+              /> : {src===null? <div className='text-6xl font-bold justify-center items-center  flex h-1/1 border-2 border-b-5'>No Image</div> : src===undefined?<Spinner/>:null }
             </SwiperSlide>
           ))}
         </Swiper>
@@ -70,12 +72,12 @@ export default function ScreenshotSlider({ images }: Props) {
           <SwiperSlide key={i} className=" relative aspect-video cursor-pointer rounded overflow-hidden border-4 transition-all duration-200
                  border-transparent opacity-70 hover:opacity-100
                  [&.swiper-slide-thumb-active]:border-blue-500 [&.swiper-slide-thumb-active]:opacity-100 [&.swiper-slide-thumb-active]:ring-2 [&.swiper-slide-thumb-active]:ring-blue-300">
-            {src ? <Image
+            <Image
               src={src}
               alt={`thumb-${i}`}
               fill
               className="object-cover w-full h-20"
-            />: null }
+            />:  {src===null? <div className='text-2xl font-bold justify-center items-center  flex h-1/1 border-2 border-b-5'>No Image</div> : src===undefined?<Spinner/>:null }
           </SwiperSlide>
         ))}
       </Swiper>

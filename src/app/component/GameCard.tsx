@@ -34,7 +34,7 @@ const GameCard = ({game}:Props) => {
                 fill
                 priority
                 className="size-7 object-cover rounded-sm"/>
-       : null}
+       : <div className="flex text-4xl font-bold justify-center h-1/1 items-center border-2 "> No Image </div>}
          </div>  
       <div className="p-5">
         <div className="flex"> {gamePlatformId?.map((num,index) => <PlatformIcon key={index} id={num} />)}</div>
